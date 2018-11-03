@@ -85,11 +85,6 @@ class Account extends Component {
         {modal}
         <h2>{this.props.credentialsReducer.token}</h2>
         <h2>{this.props.credentialsReducer.userId}</h2>
-        <pre>
-         {
-          JSON.stringify(this.props)
-         }
-        </pre>
       </div>
     );
   }
