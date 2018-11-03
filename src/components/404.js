@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import './App.css';
-import Navbar from './components/navbar.js';
+import './404.css';
 
 class App extends Component {
   render() {
     return (
-      <div>
-        <Navbar />
+      <div class="main">
+        <h2>404 Page not found</h2>
       </div>
     );
   }
