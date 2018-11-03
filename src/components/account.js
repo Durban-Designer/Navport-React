@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios'
 import { connect } from 'react-redux';
 import { getCredentials } from '../actions/credentialsController'
-import './login.css';
+import './account.css';
 
 const mapStateToProps = state => ({
   ...state
@@ -29,17 +29,40 @@ function EditModal () {
   );
 }
 
+function ViewModal () {
+  return (
+    <div className="ViewModal">
+      <h2>Account</h2>
+      <h4>{this.state.email}</h4>
+      <h4>{this.state.name}</h4>
+    </div>
+  );
+}
+
 class Account extends Component {
   constructor (props) {
     super(props);
     this.state = {
       email: '',
+      name: '',
       password: '',
+      view: '',
       error: false
     }
     this.formSubmit = this.formSubmit.bind(this);
+    this.updateName = this.updateName.bind(this);
     this.updateEmail = this.updateEmail.bind(this);
     this.updatePassword = this.updatePassword.bind(this);
+    axios.get('http://localhost:81/users/' + this.props.credentialsReducer.userId, { headers: { Authorization: 'JWT ' + this.props.credentialsReducer.token }})
+      .then(response => {
+        this.setState({
+          email: response.data.email,
+          name: response.data.name
+        });
+      })
+      .catch(err => {
+        console.log(err)
+      })
   }
   formSubmit (evt) {
     evt.preventDefault()
@@ -61,6 +84,9 @@ class Account extends Component {
   updateEmail (event) {
     this.setState({email: event.target.value});
   }
+  updateName (event) {
+    this.setState({name: event.target.value});
+  }
   updatePassword (event) {
     this.setState({password: event.target.value});
   }
@@ -69,21 +95,11 @@ class Account extends Component {
     if (this.state.view === 'edit') {
       modal = <EditModal />
     } else {
-      modal = function () {
-        return (
-          <div className="ViewModal">
-            <h2>Account</h2>
-            <h4>{this.state.email}</h4>
-            <h4>{this.state.name}</h4>
-          </div>
-        );
-      }
+      modal = <ViewModal />
     }
     return (
       <div className="main">
         {modal}
-        <h2>{this.props.credentialsReducer.token}</h2>
-        <h2>{this.props.credentialsReducer.userId}</h2>
       </div>
     );
   }
