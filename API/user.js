@@ -11,50 +11,13 @@ var UserSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  title: {
-    type: String,
-    required: true
-  },
-  firstName: {
-    type: String,
-    required: true
-  },
-  lastName: {
-    type: String,
-    required: true
-  },
-  address: {
-    type: String,
-    required: true
-  },
-  phone: {
-    type: Number,
-    required: true
-  },
-  role: {
-    type: String,
-    required: true
-  },
-  location: {
-    type: String,
-    required: true
-  },
-  shift: {
-    type: String,
-    required: true
-  },
-  department: {
+  name: {
     type: String,
     required: true
   },
   companyId: {
     type: String,
     required: true
-  },
-  departmentAdmin: {
-    type: Boolean,
-    required: false,
-    default: false
   },
   admin: {
     type: Boolean,
@@ -65,16 +28,6 @@ var UserSchema = new mongoose.Schema({
     type: Boolean,
     required: false,
     default: false
-  },
-  endpointARN: {
-    type: String,
-    required: false,
-    default: ''
-  },
-  platform: {
-    type: String,
-    required: false,
-    default: ''
   }
 })
 
