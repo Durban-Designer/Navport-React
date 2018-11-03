@@ -12,6 +12,10 @@ const mapDispatchToProps = dispatch => ({
 })
 
 function EditModal () {
+  var errorUpdateModal
+  if (this.state.error) {
+    errorUpdateModal =  <h4 className="errorMessage">Unable to Update User object</h4>
+  }
   return (
     <div className="EditModal">
       <form onSubmit={this.updateUser}>
