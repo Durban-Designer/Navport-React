@@ -7,7 +7,6 @@ export default (state = {}, action) => {
       }
       return state
     case 'getCredentials':
-      console.log(state)
       return state
     default:
       return state

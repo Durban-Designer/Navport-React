@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import axios from 'axios'
 import { connect } from 'react-redux';
-import { storeCredentials } from '../actions/credentialsController'
+import { getCredentials } from '../actions/credentialsController'
 import './login.css';
 
 const mapStateToProps = state => ({
   ...state
 })
 const mapDispatchToProps = dispatch => ({
-  storeCredentials: (token, userId) => dispatch(storeCredentials(token, userId))
+  getCredentials: () => dispatch(getCredentials())
 })
 
 function EditModal () {
@@ -29,7 +29,7 @@ function EditModal () {
   );
 }
 
-class Login extends Component {
+class Account extends Component {
   constructor (props) {
     super(props);
     this.state = {
@@ -82,6 +82,8 @@ class Login extends Component {
     return (
       <div className="main">
         {modal}
+        <h2>{this.props.credentialsReducer.token}</h2>
+        <h2>{this.props.credentialsReducer.userId}</h2>
         <pre>
          {
           JSON.stringify(this.props)
@@ -92,4 +94,4 @@ class Login extends Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(Account);
