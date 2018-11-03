@@ -11,40 +11,12 @@ const mapDispatchToProps = dispatch => ({
   getCredentials: () => dispatch(getCredentials())
 })
 
-function EditModal () {
-  var errorUpdateModal
-  if (this.state.error) {
-    errorUpdateModal =  <h4 className="errorMessage">Unable to Update User object</h4>
-  }
-  return (
-    <div className="EditModal">
-      <form onSubmit={this.updateUser}>
-        <input value={this.state.email} onChange={this.updateEmail} placeholder="email@example.com"/>
-        <input value={this.state.password} onChange={this.updatePassword} placeholder="**********"/>
-        <input value={this.state.name} onChange={this.updateName} placeholder="User St. John"/>
-        {errorUpdateModal}
-        <input type="submit" value="Confirm Edit" />
-      </form>
-    </div>
-  );
-}
-
-function ViewModal () {
-  return (
-    <div className="ViewModal">
-      <h2>Account</h2>
-      <h4>{this.state.email}</h4>
-      <h4>{this.state.name}</h4>
-    </div>
-  );
-}
-
 class Account extends Component {
   constructor (props) {
     super(props);
     this.state = {
-      email: '',
-      name: '',
+      email: '1',
+      name: '2',
       password: '',
       view: '',
       error: false
@@ -103,6 +75,35 @@ class Account extends Component {
       </div>
     );
   }
+}
+
+function EditModal (props) {
+  var errorUpdateModal
+  if (this.state.error) {
+    errorUpdateModal =  <h4 className="errorMessage">Unable to Update User object</h4>
+  }
+  return (
+    <div className="EditModal">
+      <form onSubmit={this.updateUser}>
+        <input value={props.email} onChange={this.updateEmail} placeholder="email@example.com"/>
+        <input value={props.password} onChange={this.updatePassword} placeholder="**********"/>
+        <input value={props.name} onChange={this.updateName} placeholder="User St. John"/>
+        {errorUpdateModal}
+        <input type="submit" value="Confirm Edit" />
+      </form>
+    </div>
+  );
+}
+
+function ViewModal (props) {
+  console.log(props);
+  return (
+    <div className="ViewModal">
+      <h2>Account</h2>
+      <h4>{props.email}</h4>
+      <h4>{props.name}</h4>
+    </div>
+  );
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Account);
