@@ -16,11 +16,11 @@ mongoose.connect("mongodb://user:password1@ds145113.mlab.com:45113/navport", {
   console.log(error);
 })
 
-app.use(bodyParser.json({ limit: '10mb' }));
+app.use(bodyParser.json());
 app.use(express.static(path));
 app.use("/",router);
 
-app.use(function(req, res, next) {
+router.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*")
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization")
   res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE, HEAD, OPTIONS')

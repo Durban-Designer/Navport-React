@@ -66,7 +66,6 @@ class Login extends Component {
   }
   render () {
     var modal
-    var errorUpdateModal
     if (this.state.view === 'edit') {
       modal = <EditModal />
     } else {
@@ -79,9 +78,6 @@ class Login extends Component {
           </div>
         );
       }
-    }
-    if (this.state.error) {
-      errorUpdateModal =  <h4 className="errorMessage">Unable to Update User object</h4>
     }
     return (
       <div className="main">
