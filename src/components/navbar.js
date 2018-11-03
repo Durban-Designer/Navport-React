@@ -5,7 +5,7 @@ import { Switch } from 'react-router-dom'
 import { connect } from 'react-redux';
 import './navbar.css';
 import home from './home.js';
-import login from './login.js';
+import login from './Login.js';
 import account from './account.js';
 import NoMatch from './404.js';
 

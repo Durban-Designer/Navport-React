@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios'
 import { connect } from 'react-redux';
 import { storeCredentials } from '../actions/credentialsController'
-import './login.css';
+import './Login.css';
 
 const mapStateToProps = state => ({
   ...state
